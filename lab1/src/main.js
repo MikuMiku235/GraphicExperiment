@@ -99,6 +99,8 @@ function frameCamera(box) {
 }
 
 // ---------- ①.5 关节轴可视化（?debug=1 时显示，调试"轴错方向"用） ----------
+// 注意：本素材的关节轴是节点的**局部 +Y**（Blender 的 +Z 经 glTF Y-up 重标定而来），
+// 所以箭头方向要用 (0,1,0)。以前写成 (0,0,1) 会画出与真实转轴垂直的假轴——读代码时要敢怀疑。
 function showJointAxes() {
   const q = new THREE.Quaternion();
   const p = new THREE.Vector3();
@@ -106,7 +108,7 @@ function showJointAxes() {
   for (const j of state.joints) {
     j.node.getWorldQuaternion(q);
     j.node.getWorldPosition(p);
-    const dir = new THREE.Vector3(0, 0, 1).applyQuaternion(q).normalize();
+    const dir = new THREE.Vector3(0, 1, 0).applyQuaternion(q).normalize();
     scene.add(new THREE.ArrowHelper(dir, p, len, 0xff5f56, len * 0.25, len * 0.15));
     scene.add(new THREE.ArrowHelper(dir.clone().negate(), p, len, 0xff5f56, len * 0.25, len * 0.15));
   }
