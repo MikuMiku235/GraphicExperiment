@@ -1,0 +1,25 @@
+# ---- 快捷方式（指向作者本机的 Obsidian 笔记库，不入库；队友不需要） ----
+*.lnk
+
+# ---- Office 临时锁文件 / 系统垃圾文件 ----
+~$*
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# ---- 依赖与构建产物（本仓库无需 npm install，防止误提交） ----
+node_modules/
+dist/
+*.tsbuildinfo
+
+# ---- Agent 本地工作区（审计脚本、浏览器缓存、截图，不入库） ----
+.agent-work/
+
+# ---- 编辑器 / IDE ----
+.vscode/
+.idea/
+*.swp
+
+# ---- 日志与临时输出 ----
+*.log
+*.tmp
